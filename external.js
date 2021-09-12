@@ -1,7 +1,7 @@
 const Gpio = require("onoff").Gpio;
 
 const watchWaterSensor = (callback) => {
-  const sensor = new Gpio(26, "in");
+  const sensor = new Gpio(26, "in", "both");
   sensor.watch((err, value) => {
     if (err) {
       throw err;
