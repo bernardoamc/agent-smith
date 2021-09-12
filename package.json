@@ -1,0 +1,38 @@
+{
+  "name": "agent-smith",
+  "version": "0.0.1",
+  "description": "Monitor earth and air temperature and humidity (probably)",
+  "main": "index.js",
+  "scripts": {
+    "install-dependencies": "npm install && cd front-end && npm install",
+    "start": "node index.js",
+    "build": "cd front-end && npm run build",
+    "dev": "concurrently \"npm:start-react-server\" \"npm:start-api-server\"",
+    "start-react-server": "cd front-end && npm start",
+    "start-api-server": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bernardoamc/agent-smith.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bernardoamc/agent-smith/issues"
+  },
+  "homepage": "https://github.com/bernardoamc/agent-smith#readme",
+  "dependencies": {
+    "http-status": "^1.5.0",
+    "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-cors": "^0.0.16",
+    "koa-logger": "^3.2.1",
+    "koa-mount": "^4.0.0",
+    "koa-router": "^10.1.1",
+    "koa-static": "^5.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.1",
+    "nodemon": "^2.0.12"
+  }
+}
