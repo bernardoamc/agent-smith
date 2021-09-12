@@ -1,4 +1,5 @@
 const Gpio = require("onoff").Gpio;
+const dht = require("node-dht-sensor");
 
 const watchWaterSensor = (callback) => {
   const sensor = new Gpio(26, "in", "both");
@@ -6,7 +7,6 @@ const watchWaterSensor = (callback) => {
     if (err) {
       throw err;
     }
-    console.log("sensor value changed", value);
     callback(value);
   });
 
@@ -15,6 +15,21 @@ const watchWaterSensor = (callback) => {
   });
 };
 
+const readDHT = (callback) => {
+  dht.read(11, 17, (err, temperature, humidity) => {
+    if (!err) {
+      callback({ temperature, humidity });
+    }
+  });
+};
+
+const watchAirSensor = (callback) => {
+  setInterval(() => {
+    readDHT(callback);
+  }, 1000);
+};
+
 module.exports = {
   watchWaterSensor,
+  watchAirSensor,
 };

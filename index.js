@@ -6,7 +6,7 @@ const serve = require("koa-static");
 const mount = require("koa-mount");
 const cors = require("koa-cors");
 const HttpStatus = require("http-status");
-const { watchWaterSensor } = require("./external");
+const { watchWaterSensor, watchAirSensor } = require("./external");
 
 const app = new Koa();
 
@@ -23,15 +23,26 @@ app.use(cors());
 const router = new Router();
 
 let needsWater = false;
+let temperature = 0,
+  humidity = 0;
 
 watchWaterSensor((sensorData) => {
   needsWater = sensorData;
+});
+
+watchAirSensor((sensorData) => {
+  temperature = sensorData.temperature;
+  humidity = sensorData.humidity;
 });
 
 router.get("/api/needsWater", async (ctx) => {
   ctx.body = {
     needsWater,
   };
+});
+
+router.get("/api/dht", async (ctx) => {
+  ctx.body = { temperature, humidity };
 });
 
 app.use(router.routes()).use(router.allowedMethods());

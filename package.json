@@ -30,6 +30,7 @@
     "koa-mount": "^4.0.0",
     "koa-router": "^10.1.1",
     "koa-static": "^5.0.0",
+    "node-dht-sensor": "^0.4.3",
     "onoff": "^6.0.3"
   },
   "devDependencies": {
