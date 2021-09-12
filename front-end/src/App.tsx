@@ -1,21 +1,28 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 
-function App() {
+const App = () => {
+  const [needsWater, setNeedsWater] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetch("/api/needsWater")
+        .then((res) => res.json())
+        .then((data) => setNeedsWater(data.needsWater));
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="App">
+    <div className="App h-full flex justify-center align-center items-center">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React Yo!
-        </a>
+        <img src="/pot.png" />
+        {needsWater && <h1 className="text-4xl text-center mt-10 text-pink-700 font-bold">I need water!</h1>}
+        {!needsWater && <h1 className="text-4xl text-center mt-10">I am good brah!</h1>}
       </header>
     </div>
   );
-}
+};
 
 export default App;

@@ -21,10 +21,9 @@ app.use(cors());
 
 const router = new Router();
 
-router.get("/api/yo", async (ctx) => {
-  ctx.status = HttpStatus.OK;
+router.get("/api/needsWater", async (ctx) => {
   ctx.body = {
-    yo: true,
+    needsWater: true,
   };
 });
 
