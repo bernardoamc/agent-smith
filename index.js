@@ -6,6 +6,7 @@ const serve = require("koa-static");
 const mount = require("koa-mount");
 const cors = require("koa-cors");
 const HttpStatus = require("http-status");
+const { watchWaterSensor } = require("./external");
 
 const app = new Koa();
 
@@ -21,9 +22,15 @@ app.use(cors());
 
 const router = new Router();
 
+let needsWater = false;
+
+watchWaterSensor((sensorData) => {
+  needsWater = sensorData;
+});
+
 router.get("/api/needsWater", async (ctx) => {
   ctx.body = {
-    needsWater: true,
+    needsWater,
   };
 });
 
