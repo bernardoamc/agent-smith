@@ -47,7 +47,7 @@ const App = () => {
         </div>
 
         {needsWater && <h1 className="text-4xl text-center mt-10 text-pink-700 font-bold">I need water!</h1>}
-        {!needsWater && <h1 className="text-4xl text-center mt-10 font-bold">I am good brah!</h1>}
+        {!needsWater && <h1 className="text-4xl text-center mt-10 font-bold">I'm good!</h1>}
         {temperature && (
           <h1 className="text-4xl text-center mt-10 font-bold">
             Temp: {temperature}°C, humidity: {humidity}%

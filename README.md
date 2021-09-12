@@ -60,3 +60,4 @@ done!
 * Soil Moisture Detection Module in digital mode
     * GPIO Pin 26
 * DHT11–Temperature and Humidity Module using serialized data
+    * GPIO Pin 17
