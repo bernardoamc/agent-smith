@@ -18,13 +18,13 @@ The `front-end` folder is a React application
 To install dependencies run:
 
 ```bash
-yarn install-dependencies
+npm run install-dependencies
 ```
 
 To run this project type:
 
 ```bash
-yarn dev
+npm run dev
 ```
 
 This command will executed both the `node` server and the `react server`, which
@@ -45,15 +45,18 @@ done!
 
 ## Technical Details
 
+**Hardware:**
+
+* Raspberry PI 3
+
 **Code:**
 
 * NodeJS
 * React
 * Typescript
-* Yarn to execute scripts (see package.json for options)
 
 **Sensors:**
 
 * Soil Moisture Detection Module in digital mode
+    * GPIO Pin 26
 * DHT11–Temperature and Humidity Module using serialized data
-
